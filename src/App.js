@@ -1,22 +1,95 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import getAllTodos from './componentes/services/getAllTodos';
+import TodoItem from './componentes/TodoItem';
+import { useForm } from 'react-hook-form';
+import postNewUser from './componentes/services/postNewUser';
+import deleteTodo from './componentes/services/deleteTodo';
+import editTodo from './componentes/services/editTodo';
+
 
 function App() {
+  
+  const {register, handleSubmit, reset} = useForm()
+  const [todos, setTodos] = useState([])
+  const [newUser, setNewUser] = useState({})
+  const [idDelete, setIdDelete] = useState("")
+  const [idEdit, setIdEdit] = useState('')
+  const [editObj, setEditObj] = useState({})
+
+  useEffect(() => {
+    getAllTodos()
+     .then((response) =>{
+       console.log(response.data)
+       setTodos(response.data.todos)
+     })
+    postNewUser(newUser)
+       .then((response) => {
+         setTodos([response.data, ...todos])
+
+       })
+  },[newUser])
+
+  useEffect(() => {
+    deleteTodo(idDelete)
+       .then((res) => {
+         setTodos(idDelete)
+       })
+  },[idDelete])
+
+  useEffect(() => {
+    editTodo(idEdit, editObj)
+      .then(res => {
+        console.log(res)
+        setTodos([res.data, ...filterTodo(idEdit)])
+      })
+  },[idEdit, editObj])
+
+  const onSubmit = (res) => {
+    console.log(res)
+    setNewUser(res)
+  }
+
+  const handleDelete = (id) => {
+    setIdDelete(id)
+  }
+
+  const handleEdit = (id, obj) => {
+    setIdEdit(id)
+    setEditObj(obj)
+  }
+
+  const filterTodo = (id) => {
+    const array = todos.filter((item) => item.id !== id)
+    return array
+  }
+
+
+
+  const list = todos.map((todo) => <TodoItem
+  key = {todo.id} todoObj={todo} 
+  onDelete = {handleDelete} 
+  onEdit = {handleEdit}/>)
+
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form action='' onSubmit={handleSubmit(onSubmit)}>
+          <h3>Nombre</h3> 
+          <input placeholder='Fist name' {...register("name")} />
+          <h3>Apellido</h3>
+          <input placeholder='Last name' {...register("lastname")} />
+          <h3>Gmail</h3>
+          <input placeholder='Email' {...register("email")} />
+          <h3>Password</h3>
+          <input placeholder='Password' {...register("password")} />
+          <h3>Birthday</h3>
+          <input placeholder='Birthday' {...register("birthday")} />
+          <button onClick={() => onSubmit(handleSubmit.id) }  >Enviar</button>
+        </form>
+        {list}
       </header>
     </div>
   );
