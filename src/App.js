@@ -12,7 +12,7 @@ function App() {
   const {register, handleSubmit,} = useForm()
   const [todos, setTodos] = useState([])
   const [newUser, setNewUser] = useState({})
-  const [idDelete, setIdDelete] = useState("")
+  const [setIdDelete] = useState("")
   const [idEdit, setIdEdit] = useState('')
   const [editObj, setEditObj] = useState({})
 
@@ -35,7 +35,7 @@ function App() {
         console.log(res)
         setTodos([res.data, ...filterTodo(idEdit)])
       })
-  },[idEdit, editObj,])
+  },[idEdit, editObj,filterTodo])
 
   const onSubmit = (res) => {
     console.log(res)

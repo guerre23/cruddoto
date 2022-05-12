@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const editTodo = async (id,todoObj) => {
+const editTodo = async (todoObj) => {
     const URL = 'https://todos-go.herokuapp.com/api/todos/${id}'
     const req = await axios.put(URL, todoObj)
     return req
