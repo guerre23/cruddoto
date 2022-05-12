@@ -30,13 +30,6 @@ function App() {
   },[newUser,todos])
 
   useEffect(() => {
-    deleteTodo(idDelete)
-       .then((res) => {
-         setTodos(idDelete)
-       })
-  },[idDelete])
-
-  useEffect(() => {
     editTodo(idEdit, editObj)
       .then(res => {
         console.log(res)
