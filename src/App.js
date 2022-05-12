@@ -43,7 +43,7 @@ function App() {
         console.log(res)
         setTodos([res.data, ...filterTodo(idEdit)])
       })
-  },[idEdit, editObj, filterTodo])
+  },[idEdit, editObj,])
 
   const onSubmit = (res) => {
     console.log(res)
@@ -60,7 +60,7 @@ function App() {
   }
 
   const filterTodo = (id) => {
-    const array = todos.filter((item) => item.id !== id)
+    const array = todos.filtertodo((item) => item.id !== id)
     return array
   }
 

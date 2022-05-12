@@ -4,19 +4,6 @@ const EditUser = ({ dafaulValues, onEdit}) => {
     
     const {register, handleSubmit, reset} = useForm();
 
-    const objDataBase = {
-        name: "", 
-        Email: "",
-        birthday: "",
-        isAvailable: false,
-    };
-      
-    const objFormEditWithPut = {
-        id: "student",
-        name: "type",
-        
-    };
-
     const onSubmit = (res) => {
         console.log("funciona", res);
         onEdit(res)
