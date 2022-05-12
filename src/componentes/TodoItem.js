@@ -1,8 +1,5 @@
-import { useState } from "react"
 
-const TodoItem = ({todoObj, onEdit}) => {
-
-    const [editObj, setEditObj] = useState ("")
+const TodoItem = ({todoObj, onDelete, onEdit}) => {
 
     const editStatus = (e) => {
 
@@ -13,19 +10,9 @@ const TodoItem = ({todoObj, onEdit}) => {
         })
     }
 
-    const onSubmit = (res) => {
-        console.log(res)
-        setEditObj(res)
-    }
-
-/*  const handleSubmit = (id,obj) => {
-        setEditObj(id)
-        setEditObj(obj)    
-    } */
-
     return(
         <div>
-            <form onSubmit={(onSubmit)}>
+            <form >
             <h1>{todoObj.task}</h1>
             <p>{todoObj.student}</p>
             <h3>{todoObj.id}</h3>
@@ -33,7 +20,7 @@ const TodoItem = ({todoObj, onEdit}) => {
             type="checkbox" 
             onChange={editStatus} 
             checked={todoObj.isCompleted} />
-            <button onClick={() => onEdit(todoObj.id)}>Editar</button>
+            <button onClick={() => onDelete(todoObj.id)}>Eliminar</button>
             </form>
         </div>
     )

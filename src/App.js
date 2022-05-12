@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import postNewUser from './componentes/services/postNewUser';
 import deleteTodo from './componentes/services/deleteTodo';
 import editTodo from './componentes/services/editTodo';
-
+import EditUser from './componentes/EditUser'
 
 function App() {
   
@@ -69,7 +69,7 @@ function App() {
   const list = todos.map((todo) => <TodoItem
   key = {todo.id} todoObj={todo} 
   onDelete = {handleDelete} 
-  onEdit = {handleEdit}/>)
+  onEdit = {handleEdit}/>) 
 
 
 
@@ -87,7 +87,9 @@ function App() {
           <input placeholder='Password' {...register("password")} />
           <h3>Birthday</h3>
           <input placeholder='Birthday' {...register("birthday")} />
-          <button onClick={() => onSubmit(handleSubmit.id) }  >Enviar</button>
+          <br />
+          <button onClick={() => this.data(register)} >Enviar</button>
+          <EditUser />
         </form>
         {list}
       </header>
