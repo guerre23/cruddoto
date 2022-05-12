@@ -10,7 +10,7 @@ import EditUser from './componentes/EditUser'
 
 function App() {
   
-  const {register, handleSubmit, reset} = useForm()
+  const {register, handleSubmit,} = useForm()
   const [todos, setTodos] = useState([])
   const [newUser, setNewUser] = useState({})
   const [idDelete, setIdDelete] = useState("")
@@ -28,7 +28,7 @@ function App() {
          setTodos([response.data, ...todos])
 
        })
-  },[newUser])
+  },[newUser,todos])
 
   useEffect(() => {
     deleteTodo(idDelete)
@@ -43,7 +43,7 @@ function App() {
         console.log(res)
         setTodos([res.data, ...filterTodo(idEdit)])
       })
-  },[idEdit, editObj])
+  },[idEdit, editObj, filterTodo])
 
   const onSubmit = (res) => {
     console.log(res)

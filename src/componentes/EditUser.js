@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const EditUser = ({ dafaulValues, onEdit}) => {
@@ -7,7 +6,6 @@ const EditUser = ({ dafaulValues, onEdit}) => {
 
     const objDataBase = {
         name: "", 
-        lastName: "",
         Email: "",
         birthday: "",
         isAvailable: false,
@@ -15,13 +13,8 @@ const EditUser = ({ dafaulValues, onEdit}) => {
       
     const objFormEditWithPut = {
         id: "student",
-        isAvailable: true,
         name: "type",
         
-    };
-
-    const objFormEditWithPatch = {
-        isAvailable: false,
     };
 
     const onSubmit = (res) => {
