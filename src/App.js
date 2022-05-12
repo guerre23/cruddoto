@@ -4,7 +4,6 @@ import getAllTodos from './componentes/services/getAllTodos';
 import TodoItem from './componentes/TodoItem';
 import { useForm } from 'react-hook-form';
 import postNewUser from './componentes/services/postNewUser';
-import deleteTodo from './componentes/services/deleteTodo';
 import editTodo from './componentes/services/editTodo';
 import EditUser from './componentes/EditUser'
 
